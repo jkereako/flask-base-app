@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-    Home controller
+    Public controller
     ~~~~~~~~~~~~~~~
-    The home controller.
+    The public controller.
+
+    All public pages of the application ought to be controlled through this
+    file.
 
     :author: Jeff Kereakoglow
     :date: 2014-11-05

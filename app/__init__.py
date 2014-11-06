@@ -46,8 +46,8 @@ db_adapter = SQLAlchemyAdapter(db, user)
 user_manager = UserManager(db_adapter, app)
 
 #-- Controllers
-from app.controllers import home
+from app.controllers import public
 # from app.controllers import posts
 
-app.register_blueprint(home.mod)
+app.register_blueprint(public.mod)
 # app.register_blueprint(posts.mod)

@@ -28,4 +28,5 @@ CACHE_TIMEOUT = 60 * 60 * 15
 SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///db.sqlite")
 CSRF_ENABLED = True
 
-MY_OWN_CONFIG_VAR = "I can do whatever I want!"
+# Global variables
+PROJECT_NAME = "Flask Skeleton"

@@ -23,6 +23,8 @@ def home():
     :returns: HTML
     :rtype: flask.Response
     """
+    # Prevent caching if in debug mode.
+    return render_template("home.html", title="Home")
 
     # Check for a cached response
     rv = fetch_cached_data()
@@ -30,9 +32,31 @@ def home():
     if rv is not None:
         return rv
 
-    out = render_template("home.html")
+    out = render_template("home.html", title="Home")
 
     # Automatically cached for 15 minutes
     cache_data(out)
 
     return out
+
+@mod.route('/about', methods=["GET"])
+def about():
+    """
+    Renders the view for the home controller.
+
+    :returns: HTML
+    :rtype: flask.Response
+    """
+    # Prevent caching if in debug mode.
+    return render_template("about.html", title="Login")
+
+@mod.route('/login', methods=["GET"])
+def login():
+    """
+    Renders the view for the home controller.
+
+    :returns: HTML
+    :rtype: flask.Response
+    """
+    # Prevent caching if in debug mode.
+    return render_template("login.html", title="Login")

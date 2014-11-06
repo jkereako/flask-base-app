@@ -17,6 +17,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_user import SQLAlchemyAdapter, UserManager
 
 app = Flask(__name__)
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
 app.config.from_object("config")
 cache = SimpleCache(__name__)
 
@@ -31,7 +33,7 @@ def not_found(error):
     :returns: HTML
     :rtype: flask.Response
     """
-    return render_template("404.html"), 404
+    return render_template("404.html", title="404"), 404
 
 
 #-- Models

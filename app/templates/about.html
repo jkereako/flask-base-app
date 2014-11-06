@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block css %}
+  <link href="../static/css/about.css" rel="stylesheet">
+{% endblock %}
+
+{% block header %}{% include "header.html" %}{% endblock %}
+
+{% block content %}
+  <div class="about">
+    <h1>Flask Skeleton</h1>
+    <p class="lead">Here's an example of a simple, text-only page</p>
+    <p>
+      This page is using <a href="http://getbootstrap.com/examples/starter-template/" target="_blank">Bootstrap's starter template</a>.
+    </p>
+  </div>
+{% endblock %}
+
+{% block footer %}{% include "footer.html" %}{% endblock %}

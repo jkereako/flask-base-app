@@ -1,8 +1,14 @@
 {% extends "layout.html" %}
 
-{% block title %}Page Not Found{% endblock %}
+{% block jumbotron %}
+<div class="jumbotron">
+  <div class="container">
 
-{% block content %}
-<h1>404</h1>
-<p>That page doesn't exist.</p>
+    <h1>404</h1>
+    <p>
+      You're here because you requested a URL that isn't defined in the application. This page is being rendered from <code>templates/404.html</code>.
+      </p>
+    <p><a class="btn btn-primary btn-lg" href="https://github.com/jkereako/flask-skeleton" target="_blank" role="button">Project on Github &raquo;</a></p>
+  </div>
+</div>
 {% endblock %}

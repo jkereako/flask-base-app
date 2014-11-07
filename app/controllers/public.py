@@ -18,6 +18,11 @@ from app.utils import cache_data, fetch_cached_data
 
 mod = Blueprint("public", __name__)
 
+args = {"title":'',
+        "stylesheet":'',
+        "active_page":'',
+        "show_header":True}
+
 @mod.route('/', methods=["GET"])
 def home():
     """
@@ -26,21 +31,26 @@ def home():
     :returns: HTML
     :rtype: flask.Response
     """
+
+    args["title"] = "Home"
+    args["active_page"] = "Home"
+    args["show_header"] = "public"
+
     # Prevent caching if in debug mode.
-    return render_template("public/home.html", title="Home")
+    return render_template("public/home.html", args=args)
 
-    # Check for a cached response
-    rv = fetch_cached_data()
-
-    if rv is not None:
-        return rv
-
-    out = render_template("home.html", title="Home")
-
-    # Automatically cached for 15 minutes
-    cache_data(out)
-
-    return out
+    # # Check for a cached response
+    # rv = fetch_cached_data()
+    #
+    # if rv is not None:
+    #     return rv
+    #
+    # out = render_template("home.html", args=args)
+    #
+    # # Automatically cached for 15 minutes
+    # cache_data(out)
+    #
+    # return out
 
 @mod.route('/about', methods=["GET"])
 def about():
@@ -50,8 +60,13 @@ def about():
     :returns: HTML
     :rtype: flask.Response
     """
+    args["title"] = "About"
+    args["active_page"] = "about"
+    args["stylesheet"] = "about"
+    args["show_header"] = "public"
+
     # Prevent caching if in debug mode.
-    return render_template("public/about.html", title="Login")
+    return render_template("public/about.html", args=args)
 
 @mod.route('/login', methods=["GET"])
 def login():
@@ -61,5 +76,10 @@ def login():
     :returns: HTML
     :rtype: flask.Response
     """
+    args["title"] = "Login"
+    args["active_page"] = "login"
+    args["stylesheet"] = "login"
+    args["show_header"] = None
+
     # Prevent caching if in debug mode.
-    return render_template("public/login.html", title="Login")
+    return render_template("public/login.html", args=args)

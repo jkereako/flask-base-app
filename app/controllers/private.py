@@ -18,6 +18,10 @@ from app.utils import cache_data, fetch_cached_data
 from flask_user import current_user, login_required
 
 mod = Blueprint("private", __name__)
+args = {"title":'',
+        "stylesheet":'',
+        "active_page":'',
+        "show_header":True}
 
 @mod.route('/dashboard', methods=["GET"])
 @login_required
@@ -28,21 +32,27 @@ def dashboard():
     :returns: HTML
     :rtype: flask.Response
     """
+
+    args["title"] = "Dashboard"
+    args["active_page"] = "dashboard"
+    args["stylesheet"] = "dashboard"
+    args["show_header"] = "private"
+
     # Prevent caching if in debug mode.
-    return render_template("private/dashboard.html", title="Dashboard")
+    return render_template("private/dashboard.html", args=args)
 
-    # Check for a cached response
-    rv = fetch_cached_data()
-
-    if rv is not None:
-        return rv
-
-    out = render_template("home.html", title="Home")
-
-    # Automatically cached for 15 minutes
-    cache_data(out)
-
-    return out
+    # # Check for a cached response
+    # rv = fetch_cached_data()
+    #
+    # if rv is not None:
+    #     return rv
+    #
+    # out = render_template("home.html", args=args)
+    #
+    # # Automatically cached for 15 minutes
+    # cache_data(out)
+    #
+    # return out
 
 @mod.route('/profile', methods=["GET"])
 @login_required

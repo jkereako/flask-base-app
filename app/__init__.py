@@ -16,12 +16,33 @@ from werkzeug.contrib.cache import SimpleCache
 from flask_sqlalchemy import SQLAlchemy
 from flask_user import SQLAlchemyAdapter, UserManager
 
+# Initialize the app and the ORM
 app = Flask(__name__)
+cache = SimpleCache(__name__)
+db = SQLAlchemy(app)
+
 app.jinja_env.trim_blocks = True
 app.jinja_env.lstrip_blocks = True
 app.config.from_object("config")
 
-cache = SimpleCache(__name__)
+#-- Models
+from app.models import user
+
+#-- Flask User init
+db_adapter = SQLAlchemyAdapter(db, user.User, UserAuthClass=user.UserAuth)
+user_manager = UserManager(db_adapter, app)
+
+db.create_all()
+# Seed database
+user.create("manager", "Manager", "User", "manager@example.com", "manager")
+db.session.commit()
+
+#-- Controllers
+from app.controllers import public
+from app.controllers import private
+
+app.register_blueprint(public.mod)
+app.register_blueprint(private.mod)
 
 @app.errorhandler(403)
 def not_found(error):
@@ -42,20 +63,3 @@ def not_found(error):
     :rtype: flask.Response
     """
     return render_template("404.html", title="404"), 404
-
-db = SQLAlchemy(app)
-db.create_all() # Must be called AFTER all model files are imported
-
-#-- Models
-from app.models import user
-
-#-- Flask User init
-db_adapter = SQLAlchemyAdapter(db, user)
-user_manager = UserManager(db_adapter, app)
-
-#-- Controllers
-from app.controllers import public
-from app.controllers import private
-
-app.register_blueprint(public.mod)
-app.register_blueprint(private.mod)

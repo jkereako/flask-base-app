@@ -1,25 +1,27 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-    Public controller
+    Private controller
     ~~~~~~~~~~~~~~~
-    The public controller.
+    The private controller.
 
     All public pages of the application ought to be controlled through this
     file.
 
     :author: Jeff Kereakoglow
-    :date: 2014-11-05
+    :date: 2014-11-06
     :copyright: (c) 2014 by Alexis Digital
     :license: MIT, see LICENSE for more details
 """
 from flask import Blueprint, render_template
 from app.utils import cache_data, fetch_cached_data
+from flask_user import current_user, login_required
 
-mod = Blueprint("public", __name__)
+mod = Blueprint("private", __name__)
 
-@mod.route('/', methods=["GET"])
-def home():
+@mod.route('/dashboard', methods=["GET"])
+@login_required
+def dashboard():
     """
     Renders the view for the home controller.
 
@@ -27,7 +29,7 @@ def home():
     :rtype: flask.Response
     """
     # Prevent caching if in debug mode.
-    return render_template("public/home.html", title="Home")
+    return render_template("private/dashboard.html", title="Dashboard")
 
     # Check for a cached response
     rv = fetch_cached_data()
@@ -42,8 +44,9 @@ def home():
 
     return out
 
-@mod.route('/about', methods=["GET"])
-def about():
+@mod.route('/profile', methods=["GET"])
+@login_required
+def profile():
     """
     Renders the view for the home controller.
 
@@ -51,15 +54,4 @@ def about():
     :rtype: flask.Response
     """
     # Prevent caching if in debug mode.
-    return render_template("public/about.html", title="Login")
-
-@mod.route('/login', methods=["GET"])
-def login():
-    """
-    Renders the view for the home controller.
-
-    :returns: HTML
-    :rtype: flask.Response
-    """
-    # Prevent caching if in debug mode.
-    return render_template("public/login.html", title="Login")
+    return render_template("private/profile.html", title="Profile")

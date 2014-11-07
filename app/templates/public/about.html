@@ -1,10 +1,12 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
+
+{% set active_page = "about" %}
 
 {% block css %}
   <link href="../static/css/about.css" rel="stylesheet">
 {% endblock %}
 
-{% block header %}{% include "header.html" %}{% endblock %}
+{% block header %}{% include "public/header.html" %}{% endblock %}
 
 {% block content %}
   <div class="about">

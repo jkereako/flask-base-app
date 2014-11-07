@@ -1,4 +1,6 @@
-  {% extends "layout.html" %}
+{% extends "base.html" %}
+
+{% set active_page = "login" %}
 
   {% block css %}
     <link href="../static/css/login.css" rel="stylesheet">
@@ -15,5 +17,8 @@
       </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  </form>
+    <p>
+        <a href="http://getbootstrap.com/examples/signin/" target="_blank">Bootstrap's sign in template.</a>
+    </p>
+    </form>
   {% endblock %}

@@ -1,3 +1,6 @@
+{% if not args %}
+{% set args = {"title":'',"stylesheet":'',"active_page":'',"show_header":True} %}
+{% endif %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,7 +14,7 @@
     <title>Flask Skeleton::{{ args.title }}</title>
 
     <!-- Bootstrap core CSS -->
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 
     {% if args.stylesheet %}
     <link href="../static/css/{{args.stylesheet}}.css" rel="stylesheet">
@@ -26,7 +29,7 @@
   </head>
   <body>
     {% if args.show_header %}
-    {% include args.show_header + "/header.html" %}
+    {% include "header.html" %}
     {% endif %}
 
     {% block jumbotron %}{% endblock %}

@@ -1,25 +1,40 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Project name</a>
+<!-- header.html -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{ url_for("public.home")}}">{{config["PROJECT_NAME"]}}</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+
+        {% set navigation_bar = [
+        (url_for("public.home"), 'home', 'Home'),
+        (url_for("public.about"), 'about', 'About')
+    ] -%}
+    {% set active_page = args.stylesheet|default('home') -%}
+
+        <ul class="nav navbar-nav">
+        {% for href, id, caption in navigation_bar %}
+          <li{% if id == active_page %} class="active"{% endif
+          %}><a href="{{ href|e }}">{{ caption|e }}</a></li>
+        {% endfor %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if current_user.is_authenticated() %}
+            <li><a href="{{ url_for("private.dashboard") }}">Dashboard</a></li>
+            <li><a href="{{ url_for("user.logout") }}">Log out</a></li>
+          {% else %}
+            <li><a href="{{ url_for("user.login") }}">Log in</a></li>
+          {% endif %}
+        </ul>
+        <form class="navbar-form navbar-right">
+          <input type="text" class="form-control" placeholder="Search...">
+        </form>
+      </div><!--/.nav-collapse -->
     </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Settings</a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Help</a></li>
-        <li><a href="{{ url_for("user.logout") }}">Log out</a></li>
-      </ul>
-      <form class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search...">
-      </form>
-    </div>
-  </div>
-</nav>
+  </nav>

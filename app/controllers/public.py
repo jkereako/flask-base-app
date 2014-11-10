@@ -67,19 +67,3 @@ def about():
 
     # Prevent caching if in debug mode.
     return render_template("public/about.html", args=args)
-
-@mod.route('/login', methods=["GET"])
-def login():
-    """
-    Renders the view for the home controller.
-
-    :returns: HTML
-    :rtype: flask.Response
-    """
-    args["title"] = "Login"
-    args["active_page"] = "login"
-    args["stylesheet"] = "login"
-    args["show_header"] = None
-
-    # Prevent caching if in debug mode.
-    return render_template("public/login.html", args=args)

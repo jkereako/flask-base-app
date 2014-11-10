@@ -63,5 +63,11 @@ def profile():
     :returns: HTML
     :rtype: flask.Response
     """
+
+    args["title"] = "Profile"
+    args["active_page"] = "profile"
+    args["stylesheet"] = "about"
+    args["show_header"] = True
+
     # Prevent caching if in debug mode.
-    return render_template("private/profile.html", title="Profile")
+    return render_template("private/profile.html", args=args)

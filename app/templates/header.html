@@ -27,10 +27,9 @@
           <ul class="nav navbar-nav navbar-right">
             {% if current_user.is_authenticated() %}
               <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ current_user.first_name }} <span class="caret"></span></a>
+              <a href="{{ url_for("private.profile") }}" class="dropdown-toggle" data-toggle="dropdown">{{ current_user.first_name }} <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Account</a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="{{ url_for("private.profile") }}">Profile</a></li>
               </ul>
             </li>
               <li><a href="{{ url_for("private.dashboard") }}">Dashboard</a></li>

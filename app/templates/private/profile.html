@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Profile</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">First name</label>
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="{{ current_user.first_name }}" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Last name</label>
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="{{ current_user.last_name }}" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Username</label>
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="{{ current_user.username }}" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Email</label>
+  <div class="col-md-4">
+  <input id="textinput" name="textinput" type="text" placeholder="{{ current_user.email }}" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="passwordinput">Password</label>
+  <div class="col-md-4">
+    <input id="passwordinput" name="passwordinput" type="password" class="form-control input-md">
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="passwordinput">Confirm password</label>
+  <div class="col-md-4">
+    <input id="passwordinput" name="passwordinput" type="password" class="form-control input-md">
+  </div>
+</div>
+
+</fieldset>
+<button class="btn btn-lg btn-primary btn-block" type="submit" value="Sign in" tabindex=103>Update</button>
+</form>
+{% endblock %}

@@ -34,7 +34,9 @@ user_manager = UserManager(db_adapter, app)
 
 db.create_all()
 # Seed database
-user.create("manager", "Manager", "User", "manager@example.com", "manager")
+#           username, first_name, last_name, email, password
+user.create("hsimpson", "Homer", "Simpson", "homer@simpsons.com", "doh")
+
 db.session.commit()
 
 #-- Controllers

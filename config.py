@@ -20,13 +20,24 @@ import os
 
 _basedir = os.path.abspath(os.path.dirname(__file__))
 
+#-- Globals
 DEBUG = True
+# SECRET_KEY = os.getenv("SECRET_KEY",os.urandom(24))
 SECRET_KEY = "development_key"
 CACHE_TIMEOUT = 60 * 60 * 15
-
- # Flask settings
-SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///db.sqlite")
-CSRF_ENABLED = True
-
-# Global variables
 PROJECT_NAME = "Flask Skeleton"
+
+#-- SQLAlchemy
+SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///db.sqlite")
+
+#-- Flask User
+CSRF_ENABLED = True
+USER_LOGIN_URL = "/login"
+USER_LOGOUT_URL = "/logout"
+USER_REGISTER_URL = "/register-account"
+
+# Endpoints are converted to URLs using url_for()
+# The empty endpoint ('') will be mapped to the root URL ('/')
+USER_AFTER_LOGOUT_ENDPOINT = ''
+
+USER_LOGIN_TEMPLATE = "public/login.html"

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% if not args %}
+{% set args = {"title":"Login","stylesheet":"login","active_page":"login","show_header":True} %}
+{% endif %}
+
+{% block content %}
+   <form action="" class="form-signin" role="form" method="POST">
+     {{ form.hidden_tag() }}
+      <h2 class="form-signin-heading">Please sign in</h2>
+
+      {# Username or Email field #}
+      {% set field = form.username if user_manager.enable_username else form.email %}
+      <div class="control-group{% if field.errors %} error{% endif %}">
+        {{ field(class_="form-control", tabindex=100, placeholder=field.label.text, required=True, autofocus=True) }}
+        {% if field.errors %}
+          {% for e in field.errors %}
+            <span class="help-inline">{{ e }}</span>
+          {% endfor %}
+        {% endif %}
+      </div>
+
+      {# Password field #}
+      {% set field = form.password %}
+      <div class="control-group{% if field.errors %} error{% endif %}">
+      {{ field(class_="form-control", tabindex=101, placeholder=field.label.text, required=True) }}
+      {% if field.errors %}
+        {% for e in field.errors %}
+          <span class="help-inline">{{ e }}</span>
+        {% endfor %}
+      {% endif %}
+      </div>
+      {# Remember me #}
+      {% if user_manager.enable_remember_me %}
+      {% set field = login_form.remember_me %}
+      <div class="checkbox">
+        <label>
+          {{ field(type="checkbox", tabindex=102) }} {{field.label.text}}
+        </label>
+      </div>
+      {% endif %}
+      <button class="btn btn-lg btn-primary btn-block" type="submit" value="Sign in" tabindex=103>Sign in</button>
+  </form>
+{% endblock %}
+
+{% block footer %}{% include "footer.html" %}{% endblock %}

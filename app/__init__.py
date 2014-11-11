@@ -35,7 +35,7 @@ user_manager = UserManager(db_adapter, app)
 db.create_all()
 # Seed database
 #           username, first_name, last_name, email, password
-user.create("hsimpson", "Homer", "Simpson", "homer@simpsons.com", "doh")
+user.create("user", "Homer", "Simpson", "homer@simpsons.com", "password")
 
 db.session.commit()
 
@@ -54,7 +54,7 @@ def not_found(error):
     :returns: HTML
     :rtype: flask.Response
     """
-    return render_template("404.html", title="403"), 403
+    return render_template("403.html", title="403"), 403
 
 @app.errorhandler(404)
 def not_found(error):

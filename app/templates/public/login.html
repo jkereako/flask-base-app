@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
 {% if not args %}
 {% set args = {"title":"Login","stylesheet":"login","active_page":"login","show_header":True} %}
 {% endif %}
@@ -11,7 +11,7 @@
       {# Username or Email field #}
       {% set field = form.username if user_manager.enable_username else form.email %}
       <div class="control-group{% if field.errors %} error{% endif %}">
-        {{ field(class_="form-control", tabindex=100, placeholder=field.label.text, required=True, autofocus=True) }}
+        {{ field(class_="form-control", tabindex=100, placeholder=field.label.text, required=True, autofocus=True, value="user") }}
         {% if field.errors %}
           {% for e in field.errors %}
             <span class="help-inline">{{ e }}</span>
@@ -22,7 +22,7 @@
       {# Password field #}
       {% set field = form.password %}
       <div class="control-group{% if field.errors %} error{% endif %}">
-      {{ field(class_="form-control", tabindex=101, placeholder=field.label.text, required=True) }}
+      {{ field(class_="form-control", tabindex=101, placeholder=field.label.text, required=True, value="password") }}
       {% if field.errors %}
         {% for e in field.errors %}
           <span class="help-inline">{{ e }}</span>

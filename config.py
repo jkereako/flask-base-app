@@ -25,7 +25,7 @@ DEBUG = True
 # SECRET_KEY = os.getenv("SECRET_KEY",os.urandom(24))
 SECRET_KEY = "development_key"
 CACHE_TIMEOUT = 60 * 60 * 15
-PROJECT_NAME = "Flask Skeleton"
+APP_NAME = "Flask base app"
 
 #-- SQLAlchemy
 SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///db.sqlite")

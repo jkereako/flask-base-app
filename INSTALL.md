@@ -35,3 +35,6 @@ $ source  env/bin/activate
 ```
 
 Now type in `http://localhost:5000/` into your web browser and start fooling around with this thing.
+
+#### Logging in
+The credentials are `user:password`.

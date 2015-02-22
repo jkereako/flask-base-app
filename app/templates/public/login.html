@@ -5,29 +5,29 @@
 
 {% block content %}
    <form action="" class="form-signin" role="form" method="POST">
+     <h2 class="form-signin-heading">Please sign in</h2>
+     {# Username or Email field #}
+     {% set field = form.username if user_manager.enable_username else form.email %}
+     {% if field.errors %}
+       {% for e in field.errors %}
+       <div class="alert alert-danger" role="alert">
+         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+         <span class="sr-only">Error:</span>
+         {{ e }}
+       </div><!-- /.alert-->
+       {% endfor %}
+     {% endif %}
      {{ form.hidden_tag() }}
-      <h2 class="form-signin-heading">Please sign in</h2>
 
-      {# Username or Email field #}
-      {% set field = form.username if user_manager.enable_username else form.email %}
       <div class="control-group{% if field.errors %} error{% endif %}">
         {{ field(class_="form-control", tabindex=100, placeholder=field.label.text, required=True, autofocus=True, value="user") }}
-        {% if field.errors %}
-          {% for e in field.errors %}
-            <span class="help-inline">{{ e }}</span>
-          {% endfor %}
-        {% endif %}
+
       </div>
 
       {# Password field #}
       {% set field = form.password %}
       <div class="control-group{% if field.errors %} error{% endif %}">
       {{ field(class_="form-control", tabindex=101, placeholder=field.label.text, required=True, value="password") }}
-      {% if field.errors %}
-        {% for e in field.errors %}
-          <span class="help-inline">{{ e }}</span>
-        {% endfor %}
-      {% endif %}
       </div>
       {# Remember me #}
       {% if user_manager.enable_remember_me %}

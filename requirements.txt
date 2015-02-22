@@ -2,7 +2,7 @@ Flask==0.10.1
 Flask-Login==0.2.11
 Flask-Mail==0.9.1
 Flask-SQLAlchemy==2.0
-Flask-User==0.6
+-e git://github.com/neurosnap/Flask-User.git#egg=flask_user
 Flask-WTF==0.10.2
 Jinja2==2.7.3
 MarkupSafe==0.23

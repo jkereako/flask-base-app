@@ -35,6 +35,10 @@ CSRF_ENABLED = True
 USER_LOGIN_URL = "/login"
 USER_LOGOUT_URL = "/logout"
 USER_REGISTER_URL = "/register-account"
+USER_APP_NAME = APP_NAME                # Used by email templates
+USER_ENABLE_INVITATION = True
+#USER_REQUIRE_INVITATION = True
+
 
 # Endpoints are converted to URLs using url_for()
 # The empty endpoint ('') will be mapped to the root URL ('/')

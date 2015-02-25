@@ -69,6 +69,14 @@ class UserRoles(db.Model):
     user_id = db.Column(db.Integer(), db.ForeignKey('user.id', ondelete='CASCADE'))
     role_id = db.Column(db.Integer(), db.ForeignKey('role.id', ondelete='CASCADE'))
 
+class UserInvitation(db.Model):
+    __tablename__ = 'user_invite'
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(255), nullable=False)
+    # save the user of the invitee
+    invited_by_user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    # token used for registration page to identify user registering
+    token = db.Column(db.String(100), nullable=False, server_default='')
 
 def create(username, first_name, last_name, email, password):
     user_auth = UserAuth.query.filter(UserAuth.username == username).first()

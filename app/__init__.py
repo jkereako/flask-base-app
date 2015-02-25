@@ -29,7 +29,7 @@ app.config.from_object("config")
 from app.models import user
 
 #-- Flask User init
-db_adapter = SQLAlchemyAdapter(db, user.User, UserAuthClass=user.UserAuth)
+db_adapter = SQLAlchemyAdapter(db, user.User, UserAuthClass=user.UserAuth, UserInvitationClass=user.UserInvitation)
 user_manager = UserManager(db_adapter, app)
 
 db.create_all()

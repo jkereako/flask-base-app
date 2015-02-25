@@ -31,10 +31,16 @@ APP_NAME = "Flask base app"
 SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///db.sqlite")
 
 #-- Flask User
+# @see: https://github.com/neurosnap/Flask-User/blob/master/flask_user/settings.py#L7-L105
 CSRF_ENABLED = True
+USER_INVITE_URL = "/invite"
+USER_REGISTER_URL = "/new-user"
 USER_LOGIN_URL = "/login"
 USER_LOGOUT_URL = "/logout"
-USER_REGISTER_URL = "/register-account"
+USER_FORGOT_PASSWORD_URL = "/forgot-passowrd"
+USER_CHANGE_PASSWORD_URL = "/change-password"
+USER_PROFILE_URL = "/profile"
+USER_ENABLE_CHANGE_USERNAME = False
 USER_APP_NAME = APP_NAME                # Used by email templates
 USER_ENABLE_INVITATION = True
 #USER_REQUIRE_INVITATION = True

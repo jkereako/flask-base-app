@@ -8,10 +8,10 @@
     <meta name="author" content="Jeff Kereakoglow">
     <link rel="icon" href="../static/favicon.ico">
 
-    <title>Flask Skeleton::{{ args.title }}</title>
+    <title>{{ config["APP_NAME"] }}{% if args.title %}  - {{ args.title }}{% endif %}</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     {% if args.stylesheet %}
     <link href="../static/css/{{args.stylesheet}}.css" rel="stylesheet">

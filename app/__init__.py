@@ -46,22 +46,29 @@ from app.controllers import private
 app.register_blueprint(public.mod)
 app.register_blueprint(private.mod)
 
+view_args = {"title":"Not found",
+            "stylesheet":"error",
+            "show_header":False,
+            "show_footer":False}
+
+#-- Error handlers
 @app.errorhandler(403)
-def not_found(error):
+def forbidden(error):
     """
     Renders 403 page
-
     :returns: HTML
     :rtype: flask.Response
     """
-    return render_template("403.html", title="403"), 403
+
+    view_args["title"] = "Forbidden"
+    return render_template("403.html", args=view_args), 403
 
 @app.errorhandler(404)
 def not_found(error):
     """
     Renders 404 page
-
     :returns: HTML
     :rtype: flask.Response
     """
-    return render_template("404.html", title="404"), 404
+    view_args["title"] = "Not found"
+    return render_template("404.html", args=view_args), 404

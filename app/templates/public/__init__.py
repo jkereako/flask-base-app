@@ -19,6 +19,6 @@
 
     :author: Jeff Kereakoglow
     :date: 2014-11-06
-    :copyright: (c) 2014 by Alexis Digital
+    :copyright: (c) 2015 by Alexis Digital
     :license: MIT, see LICENSE for more details
 """
